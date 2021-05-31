@@ -11,6 +11,41 @@
 // 4       5
 // Answer: [1, 3, 2]
 
-function levelWidth(root) {}
+function levelWidth(root) {
+  const widths = []
+
+  let nodes = [root]
+  while (nodes.length) {
+    widths.push(nodes.length)
+
+    const children = []
+    for (let child of nodes) {
+      children.push(...child.children)
+    }
+
+    nodes = children
+  }
+
+  return widths
+  // const STOP = 'stop'
+  // let levels = [0]
+  // let nodes = [root, STOP]
+
+  // while (nodes.length) {
+  //   const node = nodes.shift()
+
+  //   if (node === STOP) {
+  //     if (nodes.length === 0) return levels
+  //   }
+
+  //   const lastIndex = levels.length - 1
+  //   levels[lastIndex]++
+
+  //   if (node.children.length > 0) {
+  //     levels.push(0)
+  //     nodes.unshift(...node.children)
+  //   }
+  // }
+}
 
 module.exports = levelWidth;
